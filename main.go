@@ -2,11 +2,12 @@ package main
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/Akim-Delli/landGo/contentType"
 	"github.com/Akim-Delli/landGo/mascot"
+	"github.com/Akim-Delli/landGo/serverkill"
 	"github.com/Akim-Delli/landGo/wordCount"
-
 	"rsc.io/quote"
 )
 
@@ -29,4 +30,7 @@ func main() {
 
 	contentType, err := contentType.ContentType("http://www.google.com")
 	fmt.Println(contentType, err)
+	if err := serverkill.KillServer("/tmp/fdoesntexist"); err != nil {
+		fmt.Fprintf(os.Stderr, "error:")
+	}
 }
